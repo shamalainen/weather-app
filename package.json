@@ -1,0 +1,26 @@
+{
+  "name": "dev-boilerplate",
+  "version": "1.0.0",
+  "description": "Gulp configuration to minimize your SCSS and JS files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shamalainen/dev-boilerplate.git"
+  },
+  "author": "Sebastian Hämäläinen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shamalainen/dev-boilerplate/issues"
+  },
+  "homepage": "https://github.com/shamalainen/dev-boilerplate#readme",
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-autoprefixer": "4.1.0",
+    "gulp-sass-glob": "^1.0.8",
+    "gulp-clean-css": "^3.9.2"
+  }
+}
