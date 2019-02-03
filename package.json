@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/shamalainen/dev-boilerplate#readme",
   "devDependencies": {
+    "browser-sync": "^2.26.3",
     "gulp": "^4.0.0",
-    "gulp-sass": "^4.0.2",
     "gulp-autoprefixer": "4.1.0",
-    "gulp-sass-glob": "^1.0.8",
-    "gulp-clean-css": "^3.9.2"
+    "gulp-clean-css": "^3.9.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-sass-glob": "^1.0.8"
   }
 }
