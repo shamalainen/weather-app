@@ -18,6 +18,7 @@
   "homepage": "https://github.com/shamalainen/dev-boilerplate#readme",
   "devDependencies": {
     "browser-sync": "^2.26.3",
+    "del": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "4.1.0",
     "gulp-clean-css": "^3.9.2",

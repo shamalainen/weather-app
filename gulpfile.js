@@ -4,6 +4,7 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var rename = require('gulp-rename');
+var del = require('del');
 
 // ------------
 // Sass plugins
@@ -79,14 +80,32 @@ function browserSyncInit() {
   });
 }
 
-// -----------
-// Watch task.
-// -----------
+function cleanAssets(done) {
+  del('./app/assets');
+  done();
+}
+
+function cleanDist(done) {
+  del('./dist');
+  done();
+}
+
+function copyToDist(done) {
+  gulp.src('./app/index.html')
+    .pipe(gulp.dest('./dist/'));
+  
+  gulp.src('./app/assets/**/*')
+    .pipe(gulp.dest('./dist/assets/'));
+
+  done();
+}
+
 gulp.task('watch', gulp.series(runWatch));
 
-// -------------
-// Default task.
-// -------------
 gulp.task('default', gulp.parallel('watch', browserSyncInit), function(done) {
+  done();
+});
+
+gulp.task('dist', gulp.series(cleanDist, cleanAssets, compileSASS, copyScripts, copyToDist), function(done) {
   done();
 });
