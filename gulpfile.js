@@ -17,6 +17,7 @@ var cleanCss = require('gulp-clean-css');
 // Javascript plugins
 // ----------------------------
 var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
 
 // ------
 // Config
@@ -54,11 +55,15 @@ function compileSASS() {
 
 function copyScripts() {
   return gulp.src(path.scripts.src + '**/*.js')
+    .pipe(concat('scripts.js'))
     .pipe(uglify())
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest(path.scripts.assets));
+    .pipe(gulp.dest(path.scripts.assets))
+    .pipe(browserSync.reload({
+      stream: true
+    }))
 }
 
 function runWatch() {
