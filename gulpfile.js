@@ -46,6 +46,9 @@ function compileSASS() {
   }))
   .pipe(cleanCss())
   .pipe(gulp.dest(path.styles.assets))
+  .pipe(browserSync.reload({
+    stream: true
+  }))
 }
 
 
@@ -63,10 +66,22 @@ function runWatch() {
   gulp.watch(path.scripts.src + '**/*.js', copyScripts);
 }
 
+function browserSyncInit() {
+  browserSync.init({
+    server: {
+      baseDir: './app'
+    },
+  });
+}
+
 // -----------
 // Watch task.
 // -----------
 gulp.task('watch', gulp.series(runWatch));
 
-gulp.task('sass', gulp.series(compileSASS));
-gulp.task('scripts', gulp.series(copyScripts));
+// -------------
+// Default task.
+// -------------
+gulp.task('default', gulp.parallel('watch', browserSyncInit), function(done) {
+  done();
+});
