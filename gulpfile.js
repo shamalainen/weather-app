@@ -19,6 +19,7 @@ var cleanCss = require('gulp-clean-css');
 // ----------------------------
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
+var babel = require('gulp-babel');
 
 // ------
 // Config
@@ -57,6 +58,9 @@ function compileSASS() {
 function copyScripts() {
   return gulp.src(path.scripts.src + '**/*.js')
     .pipe(concat('scripts.js'))
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
     .pipe(uglify())
     .pipe(rename({
       suffix: '.min'
