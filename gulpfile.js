@@ -77,6 +77,7 @@ function browserSyncInit() {
     server: {
       baseDir: './app'
     },
+    files: "./app/index.html"
   });
 }
 
