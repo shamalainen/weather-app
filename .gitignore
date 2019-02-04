@@ -5,5 +5,5 @@ npm-debug.log
 
  # Other
 .DS_Store
-./app/assets/
-./dist/
+app/assets/
+dist/
