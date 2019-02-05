@@ -5,6 +5,7 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var rename = require('gulp-rename');
 var del = require('del');
+var noop = require('gulp-noop');
 
 // ------------
 // Sass plugins
@@ -47,7 +48,7 @@ function compileSASS() {
   .pipe(autoprefix({
     browsers: ['last 2 versions']
   }))
-  .pipe(cleanCss())
+  .pipe(path.env !== "development" ? cleanCss() : noop())
   .pipe(gulp.dest(path.styles.assets))
   .pipe(browserSync.reload({
     stream: true
@@ -61,7 +62,7 @@ function copyScripts() {
     .pipe(babel({
       presets: ['@babel/env']
     }))
-    .pipe(uglify())
+    .pipe(path.env !== "development" ? uglify() : noop())
     .pipe(rename({
       suffix: '.min'
     }))
@@ -114,3 +115,13 @@ gulp.task('default', gulp.parallel('watch', browserSyncInit), function(done) {
 gulp.task('dist', gulp.series(cleanDist, cleanAssets, compileSASS, copyScripts, copyToDist), function(done) {
   done();
 });
+
+gulp.task('dev', function(done) {
+  environment("development");
+  done();
+});
+
+function environment(env) {
+  console.log('Running tasks in ' + env + ' mode.');
+  return path.env = env;
+}
