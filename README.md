@@ -10,7 +10,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 A step by step series of examples that tell you how to get a development env running
 
-
 ```
 git clone git@github.com:shamalainen/dev-boilerplate.git
 cd dev-boilerplate/
@@ -35,6 +34,12 @@ It will only have `index.html` and `assets/*`.
 
 ```
 gulp dist
+```
+
+Build a production version without minified code of your creation into `/dist`.
+
+```
+gulp dist dev
 ```
 
 ## Built With
