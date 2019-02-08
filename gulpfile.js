@@ -85,12 +85,21 @@ function copyImages() {
   return gulp.src(path.images.src + '**/*')
     .pipe(imagemin())
     .pipe(gulp.dest(path.images.assets))
+    .pipe(browserSync.reload({
+      stream: true
+    }))
+}
+
+function cleanImages(done) {
+  del(path.images.assets);
+  browserSync.reload();
+  done();
 }
 
 function runWatch() {
   gulp.watch(path.styles.src + '**/*.scss', compileSASS);
   gulp.watch(path.scripts.src + '**/*.js', copyScripts);
-  gulp.watch(path.images.src + '**/*', copyImages);
+  gulp.watch(path.images.src + '**/*', gulp.series(cleanImages, copyImages));
 }
 
 function browserSyncInit() {
@@ -102,14 +111,12 @@ function browserSyncInit() {
   });
 }
 
-function cleanAssets(done) {
-  del('./app/assets');
-  done();
+function cleanAssets() {
+  return del('./app/assets');
 }
 
-function cleanDist(done) {
-  del('./dist');
-  done();
+function cleanDist() {
+  return del('./dist');
 }
 
 function copyToDist(done) {
@@ -122,7 +129,7 @@ function copyToDist(done) {
   done();
 }
 
-gulp.task('watch', gulp.series(gulp.parallel(compileSASS, copyScripts, copyImages), runWatch));
+gulp.task('watch', gulp.series(cleanAssets, gulp.parallel(compileSASS, copyScripts, copyImages), runWatch));
 
 gulp.task('default', gulp.parallel('watch', browserSyncInit), function(done) {
   done();
