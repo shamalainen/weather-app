@@ -106,7 +106,7 @@ function copyToDist(done) {
   done();
 }
 
-gulp.task('watch', gulp.series(runWatch));
+gulp.task('watch', gulp.series(cleanAssets, compileSASS, copyScripts, runWatch));
 
 gulp.task('default', gulp.parallel('watch', browserSyncInit), function(done) {
   done();
