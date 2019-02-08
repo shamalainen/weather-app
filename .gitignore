@@ -2,6 +2,7 @@
 node_modules
 npm-debug.log
 .gulp
+package-lock.json
 
  # Other
 .DS_Store
