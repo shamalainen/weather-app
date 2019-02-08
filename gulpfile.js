@@ -22,6 +22,11 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var babel = require('gulp-babel');
 
+// ----------------------------
+// Image plugins
+// ----------------------------
+const imagemin = require('gulp-imagemin');
+
 // ------
 // Config
 // ------
@@ -39,6 +44,10 @@ var path = {
     src: basePath.src + 'js/',
     assets: basePath.assets + 'js/'
   },
+  images: {
+    src: basePath.src + 'images/',
+    assets: basePath.assets + 'images/'
+  }
 }
 
 function compileSASS() {
@@ -72,9 +81,16 @@ function copyScripts() {
     }))
 }
 
+function copyImages() {
+  return gulp.src(path.images.src + '**/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest(path.images.assets))
+}
+
 function runWatch() {
   gulp.watch(path.styles.src + '**/*.scss', compileSASS);
   gulp.watch(path.scripts.src + '**/*.js', copyScripts);
+  gulp.watch(path.images.src + '**/*', copyImages);
 }
 
 function browserSyncInit() {
@@ -106,7 +122,7 @@ function copyToDist(done) {
   done();
 }
 
-gulp.task('watch', gulp.series(cleanAssets, compileSASS, copyScripts, runWatch));
+gulp.task('watch', gulp.series(cleanAssets, gulp.parallel(compileSASS, copyScripts, copyImages), runWatch));
 
 gulp.task('default', gulp.parallel('watch', browserSyncInit), function(done) {
   done();
