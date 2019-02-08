@@ -135,7 +135,7 @@ gulp.task('default', gulp.parallel('watch', browserSyncInit), function(done) {
   done();
 });
 
-gulp.task('dist', gulp.series(cleanDist, cleanAssets, compileSASS, copyScripts, copyToDist), function(done) {
+gulp.task('dist', gulp.series(cleanDist, cleanAssets, compileSASS, copyScripts, copyImages, copyToDist), function(done) {
   done();
 });
 
