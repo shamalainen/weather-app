@@ -122,7 +122,7 @@ function copyToDist(done) {
   done();
 }
 
-gulp.task('watch', gulp.series(cleanAssets, gulp.parallel(compileSASS, copyScripts, copyImages), runWatch));
+gulp.task('watch', gulp.series(gulp.parallel(compileSASS, copyScripts, copyImages), runWatch));
 
 gulp.task('default', gulp.parallel('watch', browserSyncInit), function(done) {
   done();
