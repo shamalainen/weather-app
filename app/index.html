@@ -10,6 +10,54 @@
     <title>Weather App</title>
   </head>
   <body>
+    <div class="weather-data">
+      <div class="weather-data__temperature">
+        <h3
+          class="weather-data__temperature-item weather-data__temperature-item--min"
+        >
+          <span class="weather-data__temperature-value">32</span>
+          <span class="weather-data__temperature-unit">c</span>
+        </h3>
+        <h2
+          class="weather-data__temperature-item weather-data__temperature-item--main"
+        >
+          <span class="weather-data__temperature-value">32</span>
+          <span class="weather-data__temperature-unit">c</span>
+        </h2>
+        <h3
+          class="weather-data__temperature-item weather-data__temperature-item--max"
+        >
+          <span class="weather-data__temperature-value">32</span>
+          <span class="weather-data__temperature-unit">c</span>
+        </h3>
+      </div>
+      <h4 class="weather-data__description">light snow</h4>
+      <h3 class="weather-data__location">London</h3>
+      <div class="weather-data__time">Mon | FEB 11 | 17:20</div>
+      <div class="weather-data__figures">
+        <div class="weather-data__figure">
+          <span class="weather-data__figure-value">90%</span>
+          <span class="weather-data__figure-icon"
+            ><i class="fas fa-cloud"></i
+          ></span>
+          <span class="weather-data__figure-name">Cloudiness</span>
+        </div>
+        <div class="weather-data__figure">
+          <span class="weather-data__figure-value">3.6 m/s</span>
+          <span class="weather-data__figure-icon"
+            ><i class="fas fa-wind"></i
+          ></span>
+          <span class="weather-data__figure-name">Wind</span>
+        </div>
+        <div class="weather-data__figure">
+          <span class="weather-data__figure-value">100%</span>
+          <span class="weather-data__figure-icon"
+            ><i class="fas fa-tint"></i
+          ></span>
+          <span class="weather-data__figure-name">Humidity</span>
+        </div>
+      </div>
+    </div>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -18,3 +66,14 @@
     <script src="./assets/js/scripts.min.js"></script>
   </body>
 </html>
+
+<!-- const cityName = data['name'];
+const dataCalculation = data['dt'];
+const currentWeather = data['weather'][0]['description'];
+const currentWeatherIcon = data['weather'][0]['icon'];
+const currentTemperature = data['main']['temp'];
+const temperatureMax = data['main']['temp_max'];
+const temperatureMin = data['main']['temp_min'];
+const timeSunrise = data['sys']['sunrise'];
+const timeSunset = data['sys']['sunset'];
+const cloudinessPercent = data['clouds']['all']; -->
