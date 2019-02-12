@@ -89,7 +89,7 @@
   @include font-size(14px);
   background-color: $white;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba($black, 0.08);
   color: lighten($black, 25);
   letter-spacing: 0.125rem;
   padding: 1rem;
