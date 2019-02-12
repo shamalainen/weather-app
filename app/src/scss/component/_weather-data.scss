@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 0.25rem;
 }
 
 .weather-data__temperature-item {
@@ -22,7 +23,7 @@
 
   .weather-data__temperature-value {
     &:after {
-      border: 2px solid $black;
+      border-width: 2px;
       width: 8px;
       height: 8px;
     }
@@ -43,4 +44,12 @@
     width: 5px;
     height: 5px;
   }
+}
+
+.weather-data__description {
+  @include font-size(14px);
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.125rem;
 }
