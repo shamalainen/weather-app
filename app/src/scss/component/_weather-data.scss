@@ -1,0 +1,46 @@
+.weather-data {
+  background-color: $black-squeeze;
+  padding: 1rem;
+}
+
+.weather-data__temperature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-data__temperature-item {
+  @include font-size(26px);
+  margin-bottom: 0;
+}
+
+.weather-data__temperature-item--main {
+  @include font-size(50px);
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  font-weight: 600;
+
+  .weather-data__temperature-value {
+    &:after {
+      border: 2px solid $black;
+      width: 8px;
+      height: 8px;
+    }
+  }
+}
+
+.weather-data__temperature-value {
+  margin-right: 0.25rem;
+  position: relative;
+
+  &:after {
+    content: '';
+    border-radius: 100%;
+    border: 1px solid $black;
+    position: absolute;
+    top: 10%;
+    left: 100%;
+    width: 5px;
+    height: 5px;
+  }
+}
