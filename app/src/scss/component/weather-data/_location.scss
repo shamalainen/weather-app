@@ -1,0 +1,40 @@
+.weather-data__location {
+  @include font-size(18px);
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 0.35rem;
+  margin-bottom: 0.25rem;
+
+  @media screen and (min-width: 480px) {
+    @include font-size(20px);
+  }
+
+  @media screen and (min-width: 600px) {
+    letter-spacing: 0.5rem;
+    @include font-size(22px);
+  }
+
+  @media screen and (min-width: 768px) {
+    @include font-size(24px);
+  }
+
+  @media screen and (min-width: 960px) {
+    letter-spacing: 0.75rem;
+    @include font-size(26px);
+  }
+}
+
+.weather-data__time {
+  @include font-size(12px);
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.125rem;
+  color: lighten($black, 25);
+
+  @media screen and (min-width: 480px) {
+    letter-spacing: 0.25rem;
+    @include font-size(14px);
+  }
+}

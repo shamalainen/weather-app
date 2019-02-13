@@ -1,0 +1,93 @@
+.weather-data__temperature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.weather-data__temperature-item {
+  @include font-size(26px);
+  margin-bottom: 0;
+
+  @media screen and (min-width: 480px) {
+    @include font-size(32px);
+  }
+
+  @media screen and (min-width: 600px) {
+    @include font-size(40px);
+  }
+
+  @media screen and (min-width: 768px) {
+    @include font-size(45px);
+  }
+
+  @media screen and (min-width: 960px) {
+    @include font-size(50px);
+  }
+}
+
+.weather-data__temperature-item--main {
+  @include font-size(48px);
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  font-weight: 600;
+
+  @media screen and (min-width: 480px) {
+    @include font-size(54px);
+  }
+
+  @media screen and (min-width: 600px) {
+    @include font-size(66px);
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    @include font-size(74px);
+  }
+
+  @media screen and (min-width: 960px) {
+    @include font-size(82px);
+  }
+
+  .weather-data__temperature-value {
+    &:after {
+      border-width: 2px;
+      width: 8px;
+      height: 8px;
+    }
+  }
+}
+
+.weather-data__temperature-value {
+  margin-right: 0.25rem;
+  position: relative;
+
+  &:after {
+    content: '';
+    border-radius: 100%;
+    border: 1px solid $black;
+    position: absolute;
+    top: 10%;
+    left: 100%;
+    width: 5px;
+    height: 5px;
+  }
+}
+
+.weather-data__description {
+  @include font-size(14px);
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 300;
+  letter-spacing: 0.2rem;
+  margin-bottom: 0;
+
+  @media screen and (min-width: 480px) {
+    @include font-size(16px);
+  }
+
+  @media screen and (min-width: 600px) {
+    @include font-size(18px);
+  }
+}
