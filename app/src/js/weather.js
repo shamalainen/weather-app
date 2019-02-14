@@ -36,7 +36,7 @@ const timestampConverter = timestamp => {
 
 const renderWeatherData = () => {
   $.getJSON(
-    'http://api.openweathermap.org/data/2.5/weather?q=berlin&appid=c494b73b8224a7e0c94b4119d630a204',
+    'http://api.openweathermap.org/data/2.5/weather?q=helsinki&appid=c494b73b8224a7e0c94b4119d630a204',
     function(data) {
       const cityName = data.name;
       const dataCalculation = data.dt;
@@ -48,110 +48,103 @@ const renderWeatherData = () => {
       const humidityPercent = data.main.humidity;
       const windSpeed = data.wind.speed;
 
-      const weatherData = $('<div></div>', { class: 'weather-data' });
+      const weatherData = $(`<div class="weather-data"></div>`);
 
-      const weatherDataUpper = $('<div></div>', {
-        class: 'weather-data__upper',
-      }).appendTo(weatherData);
+      const weatherDataUpper = $(
+        `<div class="weather-data__upper"></div>`
+      ).appendTo(weatherData);
 
-      const weatherDataTemperature = $('<div></div>', {
-        class: 'weather-data__temperature',
-      }).appendTo(weatherDataUpper);
+      const weatherDataTemperature = $(
+        `<div class="weather-data__temperature"></div>`
+      ).appendTo(weatherDataUpper);
 
-      const weatherDataTemperatureItemMin = $('<h3></h3>', {
-        class:
-          'weather-data__temperature-item weather-data__temperature-item--min',
-      }).appendTo(weatherDataTemperature);
+      const weatherDataTemperatureItemMin = $(
+        `<h3 class="weather-data__temperature-item weather-data__temperature-item--min"></h3>`
+      ).appendTo(weatherDataTemperature);
 
-      const weatherDataTemperatureItemMinValue = $('<span></span>', {
-        class: 'weather-data__temperature-value',
-        text: temperatureConverter(temperatureMin),
-      }).appendTo(weatherDataTemperatureItemMin);
+      const weatherDataTemperatureItemMinValue = $(
+        `<span class="weather-data__temperature-value">${temperatureConverter(
+          temperatureMin
+        )}</span>`
+      ).appendTo(weatherDataTemperatureItemMin);
 
-      const weatherDataTemperatureItemMain = $('<h2></h2>', {
-        class:
-          'weather-data__temperature-item weather-data__temperature-item--main',
-      }).appendTo(weatherDataTemperature);
+      const weatherDataTemperatureItemMain = $(
+        `<h2 class="weather-data__temperature-item weather-data__temperature-item--main"></h2>`
+      ).appendTo(weatherDataTemperature);
 
-      const weatherDataTemperatureItemMainValue = $('<span></span>', {
-        class: 'weather-data__temperature-value',
-        text: temperatureConverter(currentTemperature),
-      }).appendTo(weatherDataTemperatureItemMain);
+      const weatherDataTemperatureItemMainValue = $(
+        `<span class="weather-data__temperature-value">${temperatureConverter(
+          currentTemperature
+        )}</span>`
+      ).appendTo(weatherDataTemperatureItemMain);
 
-      const weatherDataTemperatureItemMax = $('<h3></h3>', {
-        class:
-          'weather-data__temperature-item weather-data__temperature-item--max',
-      }).appendTo(weatherDataTemperature);
+      const weatherDataTemperatureItemMax = $(
+        `<h3 class="weather-data__temperature-item weather-data__temperature-item--max"></h3>`
+      ).appendTo(weatherDataTemperature);
 
-      const weatherDataTemperatureItemMaxValue = $('<span></span>', {
-        class: 'weather-data__temperature-value',
-        text: temperatureConverter(temperatureMax),
-      }).appendTo(weatherDataTemperatureItemMax);
+      const weatherDataTemperatureItemMaxValue = $(
+        `<span class="weather-data__temperature-value">${temperatureConverter(
+          temperatureMax
+        )}</span>`
+      ).appendTo(weatherDataTemperatureItemMax);
 
-      const weatherDataDescription = $('<h4></h4>', {
-        class: 'weather-data__description',
-        text: currentWeather,
-      }).appendTo(weatherDataUpper);
+      const weatherDataDescription = $(
+        `<h4 class="weather-data__description">${currentWeather}</h4>`
+      ).appendTo(weatherDataUpper);
 
-      const weatherDataLower = $('<div></div>', {
-        class: 'weather-data__lower',
-      }).appendTo(weatherData);
+      const weatherDataLower = $(
+        `<div class="weather-data__lower"></div>`
+      ).appendTo(weatherData);
 
-      const weatherDataLocation = $('<h3></h3>', {
-        class: 'weather-data__location',
-        text: cityName,
-      }).appendTo(weatherDataLower);
+      const weatherDataLocation = $(
+        `<h3 class="weather-data__location">${cityName}</h3>`
+      ).appendTo(weatherDataLower);
 
-      const weatherDataTime = $('<h3></h3>', {
-        class: 'weather-data__time',
-        text: timestampConverter(dataCalculation),
-      }).appendTo(weatherDataLower);
+      const weatherDataTime = $(
+        `<h4 class="weather-data__time">${timestampConverter(
+          dataCalculation
+        )}</h4>`
+      ).appendTo(weatherDataLower);
 
-      const weatherDataFigures = $('<div></div>', {
-        class: 'weather-data__figures',
-      }).appendTo(weatherDataLower);
+      const weatherDataFigures = $(
+        `<div class="weather-data__figures"></div>`
+      ).appendTo(weatherDataLower);
 
-      const weatherDataFigureCloud = $('<div></div>', {
-        class: 'weather-data__figure',
-      }).appendTo(weatherDataFigures);
+      const weatherDataFigureCloud = $(
+        `<div class="weather-data__figure"></div>`
+      ).appendTo(weatherDataFigures);
 
-      const weatherDataFigureCloudName = $('<span></span>', {
-        class: 'weather-data__figure-name',
-        text: 'Clouds',
-      }).appendTo(weatherDataFigureCloud);
+      const weatherDataFigureCloudName = $(
+        `<span class="weather-data__figure-name">Clouds</span>`
+      ).appendTo(weatherDataFigureCloud);
 
-      const weatherDataFigureCloudValue = $('<span></span>', {
-        class: 'weather-data__figure-value',
-        text: `${cloudinessPercent}%`,
-      }).appendTo(weatherDataFigureCloud);
+      const weatherDataFigureCloudValue = $(
+        `<span class="weather-data__figure-value">${cloudinessPercent}%</span>`
+      ).appendTo(weatherDataFigureCloud);
 
-      const weatherDataFigureWind = $('<div></div>', {
-        class: 'weather-data__figure',
-      }).appendTo(weatherDataFigures);
+      const weatherDataFigureWind = $(
+        `<div class="weather-data__figure"></div>`
+      ).appendTo(weatherDataFigures);
 
-      const weatherDataFigureWindName = $('<span></span>', {
-        class: 'weather-data__figure-name',
-        text: 'Wind',
-      }).appendTo(weatherDataFigureWind);
+      const weatherDataFigureWindName = $(
+        `<span class="weather-data__figure-name">Wind</span>`
+      ).appendTo(weatherDataFigureWind);
 
-      const weatherDataFigureWindValue = $('<span></span>', {
-        class: 'weather-data__figure-value',
-        text: `${windSpeed} m/s`,
-      }).appendTo(weatherDataFigureWind);
+      const weatherDataFigureWindValue = $(
+        `<span class="weather-data__figure-value">${windSpeed} m/s</span>`
+      ).appendTo(weatherDataFigureWind);
 
-      const weatherDataFigureHumidity = $('<div></div>', {
-        class: 'weather-data__figure',
-      }).appendTo(weatherDataFigures);
+      const weatherDataFigureHumidity = $(
+        `<div class="weather-data__figure"></div>`
+      ).appendTo(weatherDataFigures);
 
-      const weatherDataFigureHumidityName = $('<span></span>', {
-        class: 'weather-data__figure-name',
-        text: 'Humidity',
-      }).appendTo(weatherDataFigureHumidity);
+      const weatherDataFigureHumidityName = $(
+        `<span class="weather-data__figure-name">Wind</span>`
+      ).appendTo(weatherDataFigureHumidity);
 
-      const weatherDataFigureHumidityValue = $('<span></span>', {
-        class: 'weather-data__figure-value',
-        text: `${humidityPercent}%`,
-      }).appendTo(weatherDataFigureHumidity);
+      const weatherDataFigureHumidityValue = $(
+        `<span class="weather-data__figure-value">${humidityPercent}%</span>`
+      ).appendTo(weatherDataFigureHumidity);
 
       weatherData.appendTo($('body'));
     }
