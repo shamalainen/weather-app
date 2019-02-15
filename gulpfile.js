@@ -68,10 +68,10 @@ function compileSASS() {
 function copyScripts() {
   return gulp.src(path.scripts.src + '**/*.js')
     .pipe(concat('scripts.js'))
-    .pipe(babel({
-      presets: ['@babel/env']
-    }))
-    .pipe(path.env !== "development" ? uglify() : noop())
+    // .pipe(babel({
+    //   presets: ['@babel/preset-env']
+    // }))
+    .pipe(path.env !== 'development' && false ? uglify() : noop())
     .pipe(rename({
       suffix: '.min'
     }))
