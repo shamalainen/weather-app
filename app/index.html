@@ -10,6 +10,52 @@
     <title>Weather App</title>
   </head>
   <body>
+    <div class="cities-options">
+      <div class="cities-options__content l-container l-container--inset">
+        <div
+          class="cities-options__item cities-options__item--search cities-search"
+        >
+          <label class="cities-options__item-label" for="citySearch"
+            >Search for a city</label
+          >
+          <input
+            type="text"
+            name="citySearch"
+            id="citySearch"
+            class="cities-options__item-input cities-search__input"
+            placeholder="type in a city..."
+          />
+        </div>
+        <h4 class="cities-options__OR">OR</h4>
+        <div
+          class="cities-options__item cities-options__item--select cities-select"
+        >
+          <label class="cities-options__item-label" for="cities"
+            >Select one preselected city</label
+          >
+          <select name="cities" id="cities" class="cities-list">
+            <option disabled selected value="" class="cities-list__item">
+              Select a city
+            </option>
+            <option value="helsinki" class="cities-list__item">
+              Helsinki, FIN
+            </option>
+            <option value="stockholm" class="cities-list__item">
+              Stockholm, SWE
+            </option>
+            <option value="berlin" class="cities-list__item">
+              Berlin, GER
+            </option>
+            <option value="new york" class="cities-list__item">
+              New York, US
+            </option>
+            <option value="beijing" class="cities-list__item">
+              Beijing, CHN
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

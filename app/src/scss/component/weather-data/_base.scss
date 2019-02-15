@@ -4,21 +4,11 @@
     background-color: $black-squeeze;
 
     @media screen and (min-width: 480px) {
-      padding-top: 6rem;
       padding-bottom: 3.5rem;
     }
 
     @media screen and (min-width: 600px) {
-      padding-top: 7rem;
       padding-bottom: 4.5rem;
-    }
-
-    @media screen and (min-width: 768px) {
-      padding-top: 8rem;
-    }
-
-    @media screen and (min-width: 960px) {
-      padding-top: 9rem;
     }
   }
 

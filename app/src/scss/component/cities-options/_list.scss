@@ -1,0 +1,14 @@
+.cities-list {
+  border: 1px solid lighten($black, 50);
+  appearance: none;
+  border-radius: 0;
+  background-color: transparent;
+  @include font-size(16px);
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  cursor: pointer;
+
+  @media screen and (min-width: 480px) {
+    @include font-size(20px);
+    padding: 0.75rem 0 0.75rem 0.75rem;
+  }
+}

@@ -1,5 +1,18 @@
 $(document).ready(function() {
-  renderWeatherData();
+  $("#cities").on('change', function() {
+    const selectedValue = $(this).val();    
+    $('.weather-data').remove();
+    // Passes the value selected into the function.
+    renderWeatherData(selectedValue);
+    $("#citySearch").val('');
+  });
+  
+  $("#citySearch").keyup(function() {
+    const citySearchValue = $(this).val();
+    $('.weather-data').remove();
+    renderWeatherData(citySearchValue)
+    $("#cities").val('');
+  });
 });
 
 const temperatureConverter = (temp, unit = 'celcius') =>
@@ -34,9 +47,9 @@ const timestampConverter = timestamp => {
   } ${currentDate.substr(-2)} | ${hours.substr(-2)}:${minutes.substr(-2)}`;
 };
 
-const renderWeatherData = () => {
+const renderWeatherData = (city) => {
   $.getJSON(
-    'http://api.openweathermap.org/data/2.5/weather?q=helsinki&appid=c494b73b8224a7e0c94b4119d630a204',
+    `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c494b73b8224a7e0c94b4119d630a204`,
     function(data) {
       const cityName = data.name;
       const dataCalculation = data.dt;
