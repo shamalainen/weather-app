@@ -1,7 +1,6 @@
 $(document).ready(function() {
   $("#cities").on('change', function() {
     const selectedValue = $(this).val();    
-    $('.weather-data').remove();
     // Passes the value selected into the function.
     renderWeatherData(selectedValue);
     $("#citySearch").val('');
@@ -9,7 +8,7 @@ $(document).ready(function() {
   
   $("#citySearch").keyup(function() {
     const citySearchValue = $(this).val();
-    $('.weather-data').remove();
+    // Passes the value selected into the function.
     renderWeatherData(citySearchValue)
     $("#cities").val('');
   });
@@ -48,6 +47,7 @@ const timestampConverter = timestamp => {
 };
 
 const renderWeatherData = (city) => {
+  $('.weather-data').remove();
   $.getJSON(
     `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c494b73b8224a7e0c94b4119d630a204`,
     function(data) {
