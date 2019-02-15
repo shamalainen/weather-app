@@ -47,27 +47,33 @@ const timestampConverter = timestamp => {
 };
 
 const renderWeatherData = async city => {
-  $('.weather-data').remove();
+  try {
+    $('.weather-data').remove();
 
-  const data = await $.getJSON(
-    `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c494b73b8224a7e0c94b4119d630a204`
-  );
-
-  const { name, dt } = data;
-  const { temp_min, temp_max, temp, humidity } = data.main;
-  const { speed } = data.wind;
-  const { all } = data.clouds;
-  const { description } = data.weather[0];
-
-  const weatherData = $(`<div class="weather-data"></div>`);
-
-  const upperData = renderWeatherDataUpper({temp_min, temp, temp_max, description});
-  const lowerData = renderWeatherDataLower({name, dt, all, speed, humidity});
-
-  upperData.appendTo(weatherData);
-  lowerData.appendTo(weatherData);
-
-  weatherData.appendTo($('body'));
+    const data = await $.getJSON(
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c494b73b8224a7e0c94b4119d630a204`
+    );
+  
+    const { name, dt } = data;
+    const { temp_min, temp_max, temp, humidity } = data.main;
+    const { speed } = data.wind;
+    const { all } = data.clouds;
+    const { description } = data.weather[0];
+  
+    const weatherData = $(`<div class="weather-data"></div>`);
+  
+    const upperData = renderWeatherDataUpper({temp_min, temp, temp_max, description});
+    const lowerData = renderWeatherDataLower({name, dt, all, speed, humidity});
+  
+    upperData.appendTo(weatherData);
+    lowerData.appendTo(weatherData);
+  
+    weatherData.appendTo($('body'));
+  } catch (error) {
+    if (error.status !== 404) {
+      console.log("unexpected error:", error);
+    }
+  }
 };
 
 const renderWeatherDataUpper = ({temp_min, temp, temp_max, description}) => {
