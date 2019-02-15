@@ -61,9 +61,19 @@ const renderWeatherData = async city => {
 
   const weatherData = $(`<div class="weather-data"></div>`);
 
+  const upperData = renderWeatherDataUpper({temp_min, temp, temp_max, description});
+  const lowerData = renderWeatherDataLower({name, dt, all, speed, humidity});
+
+  upperData.appendTo(weatherData);
+  lowerData.appendTo(weatherData);
+
+  weatherData.appendTo($('body'));
+};
+
+const renderWeatherDataUpper = ({temp_min, temp, temp_max, description}) => {
   const weatherDataUpper = $(
     `<div class="weather-data__upper"></div>`
-  ).appendTo(weatherData);
+  );
 
   const weatherDataTemperature = $(
     `<div class="weather-data__temperature"></div>`
@@ -103,9 +113,13 @@ const renderWeatherData = async city => {
     weatherDataUpper
   );
 
+  return weatherDataUpper;
+};
+
+const renderWeatherDataLower = ({name, dt, all, speed, humidity}) => {
   const weatherDataLower = $(
-    `<div class="weather-data__lower"></div>`
-  ).appendTo(weatherData);
+  `<div class="weather-data__lower"></div>`
+  );
 
   $(`<h3 class="weather-data__location">${name}</h3>`).appendTo(
     weatherDataLower
@@ -155,5 +169,5 @@ const renderWeatherData = async city => {
     weatherDataFigureHumidity
   );
 
-  weatherData.appendTo($('body'));
-};
+  return weatherDataLower;
+}
