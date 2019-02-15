@@ -47,6 +47,8 @@ const timestampConverter = timestamp => {
 };
 
 const renderWeatherData = async city => {
+  const weatherData = $(`<div class="weather-data"></div>`);
+
   try {
     $('.weather-data').remove();
 
@@ -60,7 +62,6 @@ const renderWeatherData = async city => {
     const { all } = data.clouds;
     const { description } = data.weather[0];
   
-    const weatherData = $(`<div class="weather-data"></div>`);
   
     const upperData = renderWeatherDataUpper({temp_min, temp, temp_max, description});
     const lowerData = renderWeatherDataLower({name, dt, all, speed, humidity});
@@ -68,12 +69,14 @@ const renderWeatherData = async city => {
     upperData.appendTo(weatherData);
     lowerData.appendTo(weatherData);
   
-    weatherData.appendTo($('body'));
   } catch (error) {
     if (error.status !== 404) {
       console.log("unexpected error:", error);
+      $('<h2 style="text-align: center;">Unexpexted error, please try again later.</h2>').appendTo(weatherData);
     }
   }
+
+  weatherData.appendTo($('body'));
 };
 
 const renderWeatherDataUpper = ({temp_min, temp, temp_max, description}) => {
