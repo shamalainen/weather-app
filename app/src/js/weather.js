@@ -26,7 +26,7 @@ const timestampConverter = timestamp => {
   const currentDay = date.getDay();
   const currentDate = '0' + date.getDate();
   const currentMonth = date.getMonth();
-  const dayNameArray = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const dayNameArray = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const monthNameArray = [
     'Jan',
     'Feb',
@@ -41,7 +41,7 @@ const timestampConverter = timestamp => {
     'Nov',
     'Dec',
   ];
-  return `${dayNameArray[currentDay - 1]} | ${
+  return `${dayNameArray[currentDay]} | ${
     monthNameArray[currentMonth]
   } ${currentDate.substr(-2)} | ${hours.substr(-2)}:${minutes.substr(-2)}`;
 };
