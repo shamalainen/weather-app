@@ -1,24 +1,30 @@
 $(document).ready(function() {
+  // Checks for change and then renders the wanted data.
   $('#cities').on('change', function() {
     const selectedValue = $(this).val();
     // Passes the value selected into the function.
     renderWeatherData(selectedValue);
+    // Sets value to empty string
     $('#citySearch').val('');
   });
 
+  // Checks for change and then renders the wanted data.
   $('#citySearch').keyup(function() {
     const citySearchValue = $(this).val();
     // Passes the value selected into the function.
     renderWeatherData(citySearchValue);
+    // Sets value to empty string
     $('#cities').val('');
   });
 });
 
+// Converts temperature from kelvin to celcius (as default), fahrenheit possible as well.
 const temperatureConverter = (temp, unit = 'celcius') =>
   unit === 'fahrenheit'
     ? Math.round((temp - 273.15) * 1.8 + 32)
     : Math.round(temp - 273.15);
 
+// Converts UNIX timestamp into DAY NAME | MONTH DAY | TIME format.
 const timestampConverter = timestamp => {
   const date = new Date(timestamp * 1000);
   const hours = '0' + date.getHours();
@@ -26,7 +32,9 @@ const timestampConverter = timestamp => {
   const currentDay = date.getDay();
   const currentDate = '0' + date.getDate();
   const currentMonth = date.getMonth();
+  // Set day name abbreviations into array.
   const dayNameArray = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  // Set month name abbreviations into array.
   const monthNameArray = [
     'Jan',
     'Feb',
@@ -41,21 +49,27 @@ const timestampConverter = timestamp => {
     'Nov',
     'Dec',
   ];
+  // Returns wanted format.
   return `${dayNameArray[currentDay]} | ${
     monthNameArray[currentMonth]
   } ${currentDate.substr(-2)} | ${hours.substr(-2)}:${minutes.substr(-2)}`;
 };
 
+// Function that renders given city name in the parameter.
 const renderWeatherData = async city => {
+  // Parent element declaration.
   const weatherData = $(`<div class="weather-data"></div>`);
 
+  // Try catch for error handling.
   try {
     $('.weather-data').remove();
 
+    // Gets the data from API where parameter is the city wanted.
     const data = await $.getJSON(
       `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c494b73b8224a7e0c94b4119d630a204`
     );
   
+    // Variables for data from the Weather API.
     const { name, dt } = data;
     const { temp_min, temp_max, temp, humidity } = data.main;
     const { speed } = data.wind;
@@ -63,13 +77,16 @@ const renderWeatherData = async city => {
     const { description } = data.weather[0];
   
   
+    // Renders upper and lower sections of the the weather-data element.
     const upperData = renderWeatherDataUpper({temp_min, temp, temp_max, description});
     const lowerData = renderWeatherDataLower({name, dt, all, speed, humidity});
   
+    // Appends upper and lower elements to the parent element.
     upperData.appendTo(weatherData);
     lowerData.appendTo(weatherData);
   
   } catch (error) {
+    // On error status 404 will render text.
     if (error.status !== 404) {
       console.log("unexpected error:", error);
       $('<h2 style="text-align: center;">Unexpexted error, please try again later.</h2>').appendTo(weatherData);
@@ -79,6 +96,7 @@ const renderWeatherData = async city => {
   weatherData.appendTo($('body'));
 };
 
+// Function to render upper data section.
 const renderWeatherDataUpper = ({temp_min, temp, temp_max, description}) => {
   const weatherDataUpper = $(
     `<div class="weather-data__upper"></div>`
@@ -125,6 +143,7 @@ const renderWeatherDataUpper = ({temp_min, temp, temp_max, description}) => {
   return weatherDataUpper;
 };
 
+// Function to render lower data section.
 const renderWeatherDataLower = ({name, dt, all, speed, humidity}) => {
   const weatherDataLower = $(
   `<div class="weather-data__lower"></div>`
